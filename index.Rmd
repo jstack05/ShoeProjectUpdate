@@ -1,0 +1,125 @@
+---
+title: "Automatic Class Characteristic Recognition in Shoe Tread Images"
+author: "Jayden Stack, Rick Stone,  Colton Fales, and Susan VanderPlas"
+output:
+  xaringan::moon_reader:
+    css: ["default", "css/csafe.css", "css/csafe-fonts.css", "css/this-presentation.css"]
+    lib_dir: libs
+    nature:
+      countIncrementalSlides: false
+---
+
+```{r load_refs, echo=FALSE, cache=FALSE, include = F}
+library(RefManageR)
+BibOptions(check.entries = FALSE,
+           bib.style = "numeric",
+           cite.style = 'authoryear',
+           style = "html",
+           hyperlink = FALSE,
+           no.print.fields = c("isbn", "urldate"),
+           dashed = FALSE)
+
+bb <- ReadBib("./refs.bib", check = T)
+```
+
+```{r setup, include = F}
+library(tidyverse)
+library(magrittr)
+library(ggplot2)
+library(keras)
+library(furrr)
+plan(multicore)
+mytheme <- theme_bw() +
+  theme(panel.grid.major = element_line(color = "grey50"),
+        panel.grid.minor = element_line(color = "grey60"),
+        plot.background = element_rect(fill = "transparent", color = NA),
+        legend.background = element_rect(fill = "white", color = "grey"))
+
+theme_set(mytheme)
+knitr::opts_chunk$set(dev.args = list(bg = 'transparent'),
+                      echo = FALSE, message = F, warning = F, cache = T,
+                      dpi = 300, dev = 'png')
+
+
+```
+---
+class: inverse-blue
+## Update
+<br/><br/>
+
+.large[
+
+- Current Implementation of Statistical Modeling
+
+- Model Prediction Images
+
+- Future Work
+
+]
+
+---
+class:inverse-blue,middle,center
+
+# Statistical Modeling
+
+---
+class:primary-blue
+## Statistical Modeling
+
+### What is the probability of a coincidental match?
+
+- Fit a region-based convolutional neural network (R-CNN) that was able to generate predictions of features of our shoes
+ 
+- Resulted in decent predictions of largest area of shoe
+ 
+- Very poor performance of identifying every feature of the shoe – never above 4.7% precision
+
+- Could be a result of a number of different things including
+    
+    - Unbalanced sign classes
+    
+    - Features in question are very subtle
+
+- All work performed on images from Zappos website
+
+???
+
+Statistical assessment of footwear has been difficult historically, at least in part because we lack data on the reference population. If we wanted to estimate the probability of a coincidental match in footwear, like we do with DNA analysis, we would need to do the following: ...
+
+The issue is that we don't have any way to get data on the comparison population in footwear. There's no easy way to gather that data at the moment, and even if we could gather it, we don't have any way to identify similar shoes based on features. 
+
+Something like 95% of footwear evidence in the US is based on class characteristic matches, so this is not a trivial problem - we need more information about class characteristics in local populations.
+
+---
+class: primary-blue
+## Results
+
+.pull-left-40[
+![Shoe Scanner Outside Setup](Images/Snip20220403_31.png)
+.pull-right-40[
+![Shoe Scanner Outside Setup](Images/Snip20220404_34.png)
+
+???
+
+The goal of this project, in forensic space, is to develop a method for sampling and assessing which shoes are common in a local population. In order to do much of anything probabilistically with forensic shoe evidence, we need to understand the local population of potential suspects, but gathering that data is not something that has been feasible up until this point. The amazing engineering team at Iowa State has built a shoe scanner that serves kind of like a field camera in the wild. As people walk over the scanner, it takes pictures of the bottom of their shoes. At the same time, we are also working hard to ensure that the shoes are the only thing that is captured in the photo. 
+
+The goal here is to then take the pictures we gather, identify features that describe the shoe tread pattern, and work with a basis of those pattern features to describe the local population. This may eventually help us calculate a random match probability between evidence at a crime scene and the local population.
+
+
+---
+class: primary-blue
+## Future Work
+
+#### Different Features
+- Transfer over model with to shoe scanner data
+
+- Train models on shapes, logos, distinct text, etc. 
+
+- Project physical dimensions of shoes that could correspond to shoe size
+
+#### Model Variations
+-Data will be fit using different model variations including RetinaNet, YOLO (You Only Look Once), and VarifocalNet
+
+-Utilize the Icevision package to extend the fastai library’s limitations
+---
+
