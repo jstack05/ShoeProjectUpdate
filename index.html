@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Automatic Class Characteristic Recognition in Shoe Tread Images</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Jayden Stack, Rick Stone, Colton Fales, and Susan VanderPlas" />
+    <script src="libs/header-attrs-2.13/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/csafe.css" type="text/css" />
+    <link rel="stylesheet" href="css/csafe-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="css/this-presentation.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Automatic Class Characteristic Recognition in Shoe Tread Images
+### Jayden Stack, Rick Stone, Colton Fales, and Susan VanderPlas
+
+---
+
+
+
+
+
+
+class: inverse-blue
+## Update
+&lt;br/&gt;&lt;br/&gt;
+
+.large[
+
+- Current Implementation of Statistical Modeling
+
+- Model Prediction Images
+
+- Future Work
+
+]
+
+---
+class:primary-blue
+## Statistical Modeling
+
+- Fit a region-based convolutional neural network (R-CNN) that was able to generate predictions of features of our shoes
+ 
+- Resulted in decent predictions of largest area of shoe
+ 
+- Very poor performance of identifying every feature of the shoe – never above 4.7% precision
+
+- Could be a result of a number of different things including
+    
+    - Unbalanced sign classes
+    
+    - Features in question are very subtle
+
+- All work performed on images from Zappos website
+
+???
+
+Statistical assessment of footwear has been difficult historically, at least in part because we lack data on the reference population. If we wanted to estimate the probability of a coincidental match in footwear, like we do with DNA analysis, we would need to do the following: ...
+
+The issue is that we don't have any way to get data on the comparison population in footwear. There's no easy way to gather that data at the moment, and even if we could gather it, we don't have any way to identify similar shoes based on features. 
+
+Something like 95% of footwear evidence in the US is based on class characteristic matches, so this is not a trivial problem - we need more information about class characteristics in local populations.
+
+---
+class: primary-blue
+## Results
+
+![Model Prediction](Images/Snip20220403_31.png)
+&lt;!-- class: primary-blue --&gt;
+&lt;!-- ## Results --&gt;
+&lt;!-- ![Model Performance](Images/Snip20220404_34.png) --&gt;
+
+&lt;!-- ??? --&gt;
+
+&lt;!-- The goal of this project, in forensic space, is to develop a method for sampling and assessing which shoes are common in a local population. In order to do much of anything probabilistically with forensic shoe evidence, we need to understand the local population of potential suspects, but gathering that data is not something that has been feasible up until this point. The amazing engineering team at Iowa State has built a shoe scanner that serves kind of like a field camera in the wild. As people walk over the scanner, it takes pictures of the bottom of their shoes. At the same time, we are also working hard to ensure that the shoes are the only thing that is captured in the photo.  --&gt;
+
+&lt;!-- The goal here is to then take the pictures we gather, identify features that describe the shoe tread pattern, and work with a basis of those pattern features to describe the local population. This may eventually help us calculate a random match probability between evidence at a crime scene and the local population. --&gt;
+
+
+---
+class: primary-blue
+## Future Work
+
+#### Different Features
+- Transfer over model with to shoe scanner data
+
+- Train models on shapes, logos, distinct text, etc. 
+
+- Project physical dimensions of shoes that could correspond to shoe size
+
+#### Model Variations
+- Data will be fit using different model variations including RetinaNet, YOLO (You Only Look Once), and VarifocalNet
+
+- Utilize the Icevision package to extend the fastai library’s limitations
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

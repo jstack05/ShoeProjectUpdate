@@ -42,7 +42,7 @@ knitr::opts_chunk$set(dev.args = list(bg = 'transparent'),
 
 
 ```
----
+
 class: inverse-blue
 ## Update
 <br/><br/>
@@ -58,15 +58,8 @@ class: inverse-blue
 ]
 
 ---
-class:inverse-blue,middle,center
-
-# Statistical Modeling
-
----
 class:primary-blue
 ## Statistical Modeling
-
-### What is the probability of a coincidental match?
 
 - Fit a region-based convolutional neural network (R-CNN) that was able to generate predictions of features of our shoes
  
@@ -94,16 +87,16 @@ Something like 95% of footwear evidence in the US is based on class characterist
 class: primary-blue
 ## Results
 
-.pull-left-40[
-![Shoe Scanner Outside Setup](Images/Snip20220403_31.png)
-.pull-right-40[
-![Shoe Scanner Outside Setup](Images/Snip20220404_34.png)
+![Model Prediction](Images/Snip20220403_31.png)
+<!-- class: primary-blue -->
+<!-- ## Results -->
+<!-- ![Model Performance](Images/Snip20220404_34.png) -->
 
-???
+<!-- ??? -->
 
-The goal of this project, in forensic space, is to develop a method for sampling and assessing which shoes are common in a local population. In order to do much of anything probabilistically with forensic shoe evidence, we need to understand the local population of potential suspects, but gathering that data is not something that has been feasible up until this point. The amazing engineering team at Iowa State has built a shoe scanner that serves kind of like a field camera in the wild. As people walk over the scanner, it takes pictures of the bottom of their shoes. At the same time, we are also working hard to ensure that the shoes are the only thing that is captured in the photo. 
+<!-- The goal of this project, in forensic space, is to develop a method for sampling and assessing which shoes are common in a local population. In order to do much of anything probabilistically with forensic shoe evidence, we need to understand the local population of potential suspects, but gathering that data is not something that has been feasible up until this point. The amazing engineering team at Iowa State has built a shoe scanner that serves kind of like a field camera in the wild. As people walk over the scanner, it takes pictures of the bottom of their shoes. At the same time, we are also working hard to ensure that the shoes are the only thing that is captured in the photo.  -->
 
-The goal here is to then take the pictures we gather, identify features that describe the shoe tread pattern, and work with a basis of those pattern features to describe the local population. This may eventually help us calculate a random match probability between evidence at a crime scene and the local population.
+<!-- The goal here is to then take the pictures we gather, identify features that describe the shoe tread pattern, and work with a basis of those pattern features to describe the local population. This may eventually help us calculate a random match probability between evidence at a crime scene and the local population. -->
 
 
 ---
@@ -118,8 +111,8 @@ class: primary-blue
 - Project physical dimensions of shoes that could correspond to shoe size
 
 #### Model Variations
--Data will be fit using different model variations including RetinaNet, YOLO (You Only Look Once), and VarifocalNet
+- Data will be fit using different model variations including RetinaNet, YOLO (You Only Look Once), and VarifocalNet
 
--Utilize the Icevision package to extend the fastai library’s limitations
----
+- Utilize the Icevision package to extend the fastai library’s limitations
+
 
