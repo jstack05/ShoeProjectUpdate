@@ -1,5 +1,5 @@
 ---
-title: "Automatic Class Characteristic Recognition in Shoe Tread Images"
+title: "FWIII: Population Class Characteristics"
 author: "Jayden Stack, Rick Stone,  Colton Fales, and Susan VanderPlas"
 output:
   xaringan::moon_reader:
@@ -43,65 +43,82 @@ knitr::opts_chunk$set(dev.args = list(bg = 'transparent'),
 
 ```
 
-class: inverse-blue
-## Update
-<br/><br/>
+class:primary-red
+## Scanner @ AAFS
 
-.large[
-
-- Current Implementation of Statistical Modeling
-
-- Model Prediction Images
-
-- Future Work
-
+.pull-left[
+![](images/scanner-demo-setup.jpeg) 
+].pull-right[
+![](images/scanner-demo2.jpeg)
 ]
 
 ---
+class:primary-red
+## Scanner @ AAFS
+
+
+.pull-left[
+![](images/scanner-demo.jpeg)].pull-right[
+![](images/scanner-setup-brayden.jpeg)
+]
+
+
+---
+class:primary-red
+## Scanner Update
+
+- Building iteration 2 of the scanner:
+  - lighter weight
+  - vacuum-formed box
+  - less variability of mirror angles, camera placement, etc.
+  - lower risk of capturing extra information
+  
+  - "Core" of scanner should work indoors and outdoors
+  
+- Original generation scanner should be operational again (after AAFS damage) within 2 weeks
+
+
+---
+class:primary-red
+## Scanner: Future Work
+
+- Database set up for image downloads
+
+- Reach out to practitioners and collaborators to set up additional data collection sites
+
+    - Contacts from AAFS
+    - Scanner at University of Nebraska Lincoln
+
+- Work with IRB to determine whether additional oversight is necessary
+
+
+---
 class:primary-blue
-## Statistical Modeling
+## Statistical Modeling Update
 
-- Fit a region-based convolutional neural network (R-CNN) that was able to generate predictions of features of our shoes
- 
-- Resulted in decent predictions of largest area of shoe
- 
-- Very poor performance of identifying every feature of the shoe – never above 4.7% precision
-
-- Could be a result of a number of different things including
+- Texture Detection
+    - Model fit using icevision.ai
+    - Regions identified automatically and then labeled
+    - Model identifies largest area of the shoe and predicts well for that region
+    - Very low accuracy on smaller shoe areas
     
-    - Unbalanced sign classes
-    
-    - Features in question are very subtle
+- Plan to fit with shapes instead of textures to debug:
+    - Is texture too subtle for the network to detect?
+    - Is the model just not structured well for the features we're trying to detect?
+    - Model structure vs. data quality vs. implementation
 
 - All work performed on images from Zappos website
 
-???
-
-Statistical assessment of footwear has been difficult historically, at least in part because we lack data on the reference population. If we wanted to estimate the probability of a coincidental match in footwear, like we do with DNA analysis, we would need to do the following: ...
-
-The issue is that we don't have any way to get data on the comparison population in footwear. There's no easy way to gather that data at the moment, and even if we could gather it, we don't have any way to identify similar shoes based on features. 
-
-Something like 95% of footwear evidence in the US is based on class characteristic matches, so this is not a trivial problem - we need more information about class characteristics in local populations.
 
 ---
 class: primary-blue
 ## Results
 
-![Model Prediction](Images/Snip20220403_31.png)
-<!-- class: primary-blue -->
-<!-- ## Results -->
-<!-- ![Model Performance](Images/Snip20220404_34.png) -->
-
-<!-- ??? -->
-
-<!-- The goal of this project, in forensic space, is to develop a method for sampling and assessing which shoes are common in a local population. In order to do much of anything probabilistically with forensic shoe evidence, we need to understand the local population of potential suspects, but gathering that data is not something that has been feasible up until this point. The amazing engineering team at Iowa State has built a shoe scanner that serves kind of like a field camera in the wild. As people walk over the scanner, it takes pictures of the bottom of their shoes. At the same time, we are also working hard to ensure that the shoes are the only thing that is captured in the photo.  -->
-
-<!-- The goal here is to then take the pictures we gather, identify features that describe the shoe tread pattern, and work with a basis of those pattern features to describe the local population. This may eventually help us calculate a random match probability between evidence at a crime scene and the local population. -->
-
+![Model Prediction](images/Snip20220403_31.png)
 
 ---
 class: primary-blue
-## Future Work
+## Statistical Modeling Future Work
 
 #### Different Features
 - Transfer over model with to shoe scanner data
@@ -111,6 +128,7 @@ class: primary-blue
 - Project physical dimensions of shoes that could correspond to shoe size
 
 #### Model Variations
+
 - Data will be fit using different model variations including RetinaNet, YOLO (You Only Look Once), and VarifocalNet
 
 - Utilize the Icevision package to extend the fastai library’s limitations
